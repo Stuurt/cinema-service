@@ -1,7 +1,7 @@
 # Requirements
 - Docker
 - Docker Compose (comes with docker desktop for Windows users)
-- Java 21 (if your IDE doesn't manage JDK versions, and you have many JDK versions, maybe you will need to change manually by environment variables JAVA_HOME or Path), like the example below:
+- Java 21 (For **Windows users** if your IDE doesn't manage JDK versions, and you have many JDK versions, maybe you will need to change manually by environment variables JAVA_HOME or Path), like the example below:
 ![img.png](./readme-images/environment-variables-example.png)
 
 # How to run?
@@ -9,7 +9,7 @@ First, you will need to start the docker images by running **docker-compose up**
 After that, you are good to go, just start by your IDE or run **./gradlew bootRun** at root directory.
 ![img.png](./readme-images/spring-start-example.png)
 
-### Common errors for Windows users
+### Common beginners errors for Windows users
 If you encounter some persisting errors trying to setup properly, probably the reasons are:
 - Wrong Java Version at your Path or JAVA_HOME:
 ![img.png](./readme-images/java-path-environment-variables.png)
@@ -20,3 +20,6 @@ If you encounter some persisting errors trying to setup properly, probably the r
 IntelliJ example:
 ![img.png](./readme-images/changing-jdk-version-by-intellij.png)
 
+### Deploy example
+- ./gradlew bootJar
+- java -jar build/libs/service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod

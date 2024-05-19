@@ -1,9 +1,6 @@
 spring:
   profiles:
     active: dev
-  datasource:
-    url: jdbc:postgresql://localhost:5432/cinema_db
-    username: root
-    password: root
-  liquibase:
-    change-log: config/liquibase/changelog.xml
+
+server:
+  port: 8081

@@ -32,6 +32,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'org.springframework.amqp:spring-amqp:3.1.4'
 	implementation 'org.liquibase:liquibase-core:4.27.0'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -50,3 +51,14 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootRun {
+	args = ['--spring.profiles.active=prod']
+}
+
+bootJar {
+	launchScript {
+		properties 'spring.profiles.active': 'prod'
+	}
+}
+

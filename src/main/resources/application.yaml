@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+  rabbitmq:
+    username: admin
+    password: admin
 
 server:
   port: 8081

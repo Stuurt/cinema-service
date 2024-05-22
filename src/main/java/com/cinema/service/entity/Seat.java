@@ -14,7 +14,4 @@ public class Seat {
     private Long id;
     private Integer seatNumber;
     private Boolean status;
-    @ManyToOne
-    @JoinColumn(name="room_id", nullable = false)
-    private Room room;
 }

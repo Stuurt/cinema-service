@@ -19,6 +19,7 @@ public class Room {
     private Long id;
     private Integer roomNumber;
     private Integer totalSeats;
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_id")
     private List<Seat> seats;
 }

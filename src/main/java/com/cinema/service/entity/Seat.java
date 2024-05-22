@@ -1,8 +1,6 @@
 package com.cinema.service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,4 +14,7 @@ public class Seat {
     private Long id;
     private Integer seatNumber;
     private Boolean status;
+    @ManyToOne
+    @JoinColumn(name="room_id", nullable = false)
+    private Room room;
 }

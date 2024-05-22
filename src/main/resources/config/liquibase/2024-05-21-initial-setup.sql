@@ -21,7 +21,7 @@ CREATE TABLE room (
 
 CREATE TABLE seats (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    number_seat SMALLINT NOT NULL,
+    seat_number SMALLINT NOT NULL,
     status BOOLEAN NOT NULL,
     type VARCHAR(255) NOT NULL,
     room_id BIGINT,

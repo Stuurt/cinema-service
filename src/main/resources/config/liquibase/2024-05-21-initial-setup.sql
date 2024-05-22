@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset renatodam:initial-database-setup logicalFilePath:initial-setup
+--changeset thiagoindalecio:initial-database-setup logicalFilePath:initial-setup
 CREATE TABLE movie (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(255) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE room (
     total_seats SMALLINT NOT NULL
 );
 
-CREATE TABLE seats (
+CREATE TABLE seat (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     seat_number SMALLINT NOT NULL,
     status BOOLEAN NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE session (
     CONSTRAINT fk_room_id FOREIGN KEY (room_id) REFERENCES room (id)
 );
 
-CREATE TABLE tickets (
+CREATE TABLE ticket (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     price NUMERIC(10, 2),
     session_id BIGINT,

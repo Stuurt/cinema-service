@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+  liquibase:
+    enabled: true
+    change-log: classpath:/config/liquibase/changelog.xml
 
 server:
   port: 8081

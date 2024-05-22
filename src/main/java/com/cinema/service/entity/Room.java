@@ -19,6 +19,6 @@ public class Room {
     private Long id;
     private Integer roomNumber;
     private Integer totalSeats;
-    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Seat> seats;
 }

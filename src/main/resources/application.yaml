@@ -4,6 +4,9 @@ spring:
   rabbitmq:
     username: admin
     password: admin
+  liquibase:
+    enabled: true
+    change-log: classpath:/config/liquibase/changelog.xml
 
 server:
   port: 8081

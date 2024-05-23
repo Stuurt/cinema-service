@@ -15,7 +15,7 @@ CREATE TABLE movie (
 
 CREATE TABLE room (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255) NOT NULL,
+    room_number INT NOT NULL,
     total_seats SMALLINT NOT NULL
 );
 

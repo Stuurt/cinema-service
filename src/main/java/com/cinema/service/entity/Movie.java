@@ -38,6 +38,11 @@ public class Movie{
         this.producer = producer;
     }
 
+    // O JPA precisa de um método construtor vazio
+    public Movie() {
+
+    }
+
     //Getter e Setter
 
     public Long getId() {

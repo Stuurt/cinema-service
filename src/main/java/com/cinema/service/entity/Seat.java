@@ -14,4 +14,7 @@ public class Seat {
     private Long id;
     private Integer seatNumber;
     private Boolean status;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "session_id")
+    private Session session;
 }

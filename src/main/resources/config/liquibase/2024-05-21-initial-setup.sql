@@ -21,7 +21,7 @@ CREATE TABLE room (
 
 CREATE TABLE session (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    time_session TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    session_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     movie_id BIGINT,
     room_id BIGINT,
     base_price NUMERIC(10, 2),

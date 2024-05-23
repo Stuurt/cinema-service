@@ -2,10 +2,10 @@ package com.cinema.service.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table
 public class Movie{
     
     //Atributos
@@ -19,12 +19,12 @@ public class Movie{
     private Date releaseDate;
     private String duration;
     private String director;
-    private String cast;
+    private String movieCast;
     private String producer;
 
     // Método Construtor
 
-    public Movie(Long id, String name, String synopsis, String ageGroup, String category, Date releaseDate, String duration, String director, String cast, String producer){
+    public Movie(Long id, String name, String synopsis, String ageGroup, String category, Date releaseDate, String duration, String director, String movieCast, String producer){
 
         this.id = id;
         this.name = name;
@@ -34,7 +34,7 @@ public class Movie{
         this.releaseDate = releaseDate;
         this.duration = duration;
         this.director = director;
-        this.cast = cast;
+        this.movieCast = movieCast;
         this.producer = producer;
     }
 
@@ -88,11 +88,11 @@ public class Movie{
     public void setDirector(String director) {
         this.director = director;
     }
-    public String getCast() {
-        return cast;
+    public String getMovieCast() {
+        return movieCast;
     }
-    public void setCast(String cast) {
-        this.cast = cast;
+    public void setMovieCast(String movieCast) {
+        this.movieCast = movieCast;
     }
     public String getProducer() {
         return producer;

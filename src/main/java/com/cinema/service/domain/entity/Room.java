@@ -1,12 +1,10 @@
-package com.cinema.service.entity;
+package com.cinema.service.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Entity
 @Table
@@ -16,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Room {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer roomNumber;
     private Integer totalSeats;

@@ -1,5 +1,6 @@
-package com.cinema.service.entity;
+package com.cinema.service.domain.entity;
 
+import com.cinema.service.domain.enums.SeatTypeEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,11 +12,13 @@ import lombok.*;
 @Setter
 public class Seat {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer seatNumber;
     private Boolean status;
+    @Enumerated(EnumType.STRING)
+    private SeatTypeEnum type;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "session_id")
     private Session session;
     @OneToOne
     @JoinColumn(name = "ticket_id")

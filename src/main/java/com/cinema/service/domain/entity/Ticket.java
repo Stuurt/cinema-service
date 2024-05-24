@@ -1,6 +1,6 @@
-package com.cinema.service.entity;
+package com.cinema.service.domain.entity;
 
-import com.cinema.service.enums.DiscountTypeEnum;
+import com.cinema.service.domain.enums.DiscountTypeEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

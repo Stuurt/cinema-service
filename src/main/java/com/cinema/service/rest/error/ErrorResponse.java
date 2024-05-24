@@ -1,4 +1,4 @@
-package com.cinema.service.exception;
+package com.cinema.service.rest.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

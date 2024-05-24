@@ -1,6 +1,6 @@
-package com.cinema.service.exception.handler;
+package com.cinema.service.rest.error.handler;
 
-import com.cinema.service.exception.ErrorResponse;
+import com.cinema.service.rest.error.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

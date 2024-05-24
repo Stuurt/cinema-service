@@ -17,4 +17,7 @@ public class Seat {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "session_id")
     private Session session;
+    @OneToOne
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
 }

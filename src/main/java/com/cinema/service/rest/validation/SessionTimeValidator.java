@@ -27,6 +27,6 @@ public class SessionTimeValidator implements ConstraintValidator<ValidSessionTim
         if (startTime != null && endTime != null) {
             return endTime.isAfter(startTime);
         }
-        return false;
+        return true;
     }
 }

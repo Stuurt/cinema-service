@@ -18,10 +18,12 @@ import java.time.LocalDateTime;
 @ValidSessionTime(startTimeField = "sessionTime", endTimeField = "sessionEndTime", message = "Session end time must be after session start time")
 public class CreateSessionRequest {
     @Future(message = "it's not possible to create a session in the past")
+    @NotNull(message = "sessionTime required")
     private LocalDateTime sessionTime;
     @Future(message = "it's not possible to create a session ending in the past")
+    @NotNull(message = "sessionEnd time required")
     private LocalDateTime sessionEndTime;
-    @NotNull(message = "session base price required")
+    @NotNull(message = "basePrice required")
     @Positive(message = "session base price cannot be zero or negative")
     private BigDecimal basePrice;
 }

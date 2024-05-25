@@ -18,5 +18,5 @@ public class MovieController {
     public String getMethodName(@RequestParam String param) {
         return new String();
     }
-    
+
 }

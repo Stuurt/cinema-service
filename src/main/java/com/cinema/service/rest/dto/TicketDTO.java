@@ -1,4 +1,4 @@
-package com.cinema.service.dto;
+package com.cinema.service.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

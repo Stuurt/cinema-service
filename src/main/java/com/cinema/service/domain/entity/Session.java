@@ -1,4 +1,4 @@
-package com.cinema.service.entity;
+package com.cinema.service.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

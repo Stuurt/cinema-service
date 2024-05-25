@@ -1,4 +1,4 @@
-package com.cinema.service.queue;
+package com.cinema.service.domain.queue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

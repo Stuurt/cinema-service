@@ -1,4 +1,4 @@
-package com.cinema.service.enums;
+package com.cinema.service.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

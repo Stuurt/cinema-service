@@ -1,6 +1,6 @@
-package com.cinema.service.queue.configuration;
+package com.cinema.service.domain.queue.configuration;
 
-import com.cinema.service.enums.QueueEnum;
+import com.cinema.service.domain.enums.QueueEnum;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

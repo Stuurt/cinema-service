@@ -1,6 +1,6 @@
-package com.cinema.service.service;
+package com.cinema.service.domain.service;
 
-import com.cinema.service.dto.TicketDTO;
+import com.cinema.service.rest.dto.TicketDTO;
 import org.springframework.stereotype.Service;
 
 @Service

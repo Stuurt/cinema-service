@@ -1,13 +1,13 @@
-package com.cinema.service.queue.listener;
+package com.cinema.service.domain.queue.listener;
 
-import com.cinema.service.dto.TicketDTO;
-import com.cinema.service.service.TicketService;
+import com.cinema.service.rest.dto.TicketDTO;
+import com.cinema.service.domain.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-import static com.cinema.service.queue.QueueHandler.handleQueue;
+import static com.cinema.service.domain.queue.QueueHandler.handleQueue;
 
 @Component
 @RequiredArgsConstructor

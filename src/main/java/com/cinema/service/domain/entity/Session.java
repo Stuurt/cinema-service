@@ -20,6 +20,7 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime sessionTime;
+    private LocalDateTime sessionEndTime;
     private BigDecimal basePrice;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "movie_id")

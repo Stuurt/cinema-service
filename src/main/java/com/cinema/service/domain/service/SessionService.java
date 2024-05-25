@@ -28,6 +28,7 @@ public class SessionService {
                 new Session(
                         null,
                         session.getSessionTime(),
+                        session.getSessionEndTime(),
                         session.getBasePrice(),
                         movie,
                         room,

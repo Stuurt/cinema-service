@@ -9,6 +9,8 @@ import com.cinema.service.rest.dto.CreateSessionRequest;
 import com.cinema.service.domain.repository.SessionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,9 @@ public class SessionService {
         Room room = roomService.findById(roomId);
         List<Seat> seats = createSeatsForSession(room.getTotalSeats());
 
+        if (!isRoomEmptyAtThisTime(session.getSessionTime(), session.getSessionEndTime(), roomId))
+            throw new IllegalArgumentException("this room already have a session at this time period");
+
         return sessionRepository.save(
                 new Session(
                         null,
@@ -34,6 +39,14 @@ public class SessionService {
                         room,
                         seats
                 ));
+    }
+
+    private Boolean isRoomEmptyAtThisTime(
+            LocalDateTime sessionTime,
+            LocalDateTime sessionEndTime,
+            Long roomId) {
+
+        return sessionRepository.isRoomEmptyAtThisTime(sessionTime, sessionEndTime, roomId);
     }
 
     private List<Seat> createSeatsForSession(Integer totalSeats) {

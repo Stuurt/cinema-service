@@ -6,9 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 @Table
@@ -19,7 +17,7 @@ import java.util.UUID;
 public class Ticket {
     @Id
     Long id;
-    UUID uuid;
+    String uuid;
     BigDecimal pricePaid;
     @Enumerated(EnumType.STRING)
     DiscountTypeEnum discountType;

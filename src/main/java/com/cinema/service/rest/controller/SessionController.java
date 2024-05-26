@@ -26,4 +26,10 @@ public class SessionController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(sessionService.createSession(createSessionRequest, movieId, roomId));
     }
+
+    @GetMapping("/{sessionId}")
+    public ResponseEntity<Session> getSessionById(@PathVariable Long sessionId) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(sessionService.findById(sessionId));
+    }
 }

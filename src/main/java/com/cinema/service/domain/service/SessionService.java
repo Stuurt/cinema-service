@@ -32,7 +32,7 @@ public class SessionService {
         Room room = roomService.findById(roomId);
         List<Seat> seats = createSeatsForSession(room.getTotalSeats());
 
-        checkRoomAvailability(session.getSessionStartTime(), session.getSessionEndTime(), roomId);
+        validateRoomAvailability(session.getSessionStartTime(), session.getSessionEndTime(), roomId);
         validateSessionDuration(session);
 
         return sessionRepository.save(
@@ -47,7 +47,12 @@ public class SessionService {
                 ));
     }
 
-    private void checkRoomAvailability(
+    public Session findById(Long sessionId) {
+        return sessionRepository.findById(sessionId)
+                .orElseThrow(() -> new IllegalArgumentException("session with id: [" + sessionId + "] not found"));
+    }
+
+    private void validateRoomAvailability(
             LocalDateTime sessionStartTime,
             LocalDateTime sessionEndTime,
             Long roomId) {
@@ -82,7 +87,7 @@ public class SessionService {
             Seat seat = new Seat();
             seat.setSeatNumber(i);
             seat.setAvailable(true);
-            seat.setType(SeatTypeEnum.NORMAL);
+            seat.setType(SeatTypeEnum.STANDARD);
             seats.add(seat);
         }
         return seats;

@@ -82,7 +82,7 @@ public class SessionService {
             Seat seat = new Seat();
             seat.setSeatNumber(i);
             seat.setAvailable(true);
-            seat.setType(SeatTypeEnum.NORMAL);
+            seat.setType(SeatTypeEnum.COMMON);
             seats.add(seat);
         }
         return seats;

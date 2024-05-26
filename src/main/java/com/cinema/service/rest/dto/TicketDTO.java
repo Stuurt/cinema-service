@@ -1,5 +1,6 @@
 package com.cinema.service.rest.dto;
 
+import com.cinema.service.domain.enums.DiscountTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,12 +8,16 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class TicketDTO implements Serializable {
-    BigDecimal price;
-    Integer seatNumber;
+    private Long seatId;
+    private UUID uuid;
+    private BigDecimal paidPrice;
+    private Integer seatNumber;
+    private DiscountTypeEnum discountType;
 }

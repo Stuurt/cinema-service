@@ -7,7 +7,7 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-import static com.cinema.service.domain.queue.QueueHandler.handleQueue;
+import static com.cinema.service.domain.queue.QueueHandler.handleQueueMessage;
 
 @Component
 @RequiredArgsConstructor
@@ -17,7 +17,7 @@ public class RabbitMQListener {
 
     @RabbitListener(queues = "ticketQueue")
     public void onMessage(Message ticketMessage) {
-        var ticket = handleQueue(ticketMessage, TicketDTO.class);
+        var ticket = handleQueueMessage(ticketMessage, TicketDTO.class);
         ticketService.createTicket(ticket);
     }
 }

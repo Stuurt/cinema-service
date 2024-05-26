@@ -32,7 +32,7 @@ CREATE TABLE session (
 CREATE TABLE ticket (
                     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                     uuid VARCHAR(36) NOT NULL,
-                    price_paid NUMERIC(10,2) NOT NULL,
+                    paid_price NUMERIC(10,2) NOT NULL,
                     discount_type VARCHAR(30) NOT NULL
 );
 

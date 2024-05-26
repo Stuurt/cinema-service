@@ -16,7 +16,7 @@ import java.util.UUID;
 @Setter
 public class TicketDTO implements Serializable {
     private Long seatId;
-    private UUID uuid;
+    private String uuid;
     private BigDecimal paidPrice;
     private Integer seatNumber;
     private DiscountTypeEnum discountType;

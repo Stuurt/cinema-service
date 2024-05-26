@@ -7,7 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum QueueEnum {
 
-    TICKET_QUEUE("ticketQueue");
+    TICKET_QUEUE("ticketQueue"),
+    TICKET_DEAD_LETTER("ticketDeadLetter"),;
 
     private final String queueName;
 }

@@ -20,7 +20,7 @@ public class QueueHandler {
 
             return objectMapper.readValue(messageBody, clazz);
         } catch (Exception e) {
-            log.error("Error processing message: " + message, e);
+            log.error("Error processing message: [" + message.toString() + "]", e);
             return null;
         }
     }

@@ -20,7 +20,7 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private UUID uuid;
+    private String uuid;
     private BigDecimal paidPrice;
     @Enumerated(EnumType.STRING)
     private DiscountTypeEnum discountType;

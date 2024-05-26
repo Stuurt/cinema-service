@@ -10,3 +10,7 @@ spring:
 
 server:
   port: 8081
+
+cinema:
+  max-session-hours: 5
+  min-session-minutes: 10

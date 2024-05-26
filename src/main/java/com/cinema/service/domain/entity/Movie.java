@@ -1,7 +1,6 @@
 package com.cinema.service.domain.entity;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,7 +15,7 @@ public class Movie{
     private String synopsis;
     private String ageGroup;
     private String category;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private String duration;
     private String director;
     private String movieCast;
@@ -24,7 +23,7 @@ public class Movie{
 
     // Método Construtor
 
-    public Movie(Long id, String name, String synopsis, String ageGroup, String category, Date releaseDate, String duration, String director, String movieCast, String producer){
+    public Movie(Long id, String name, String synopsis, String ageGroup, String category, LocalDate releaseDate, String duration, String director, String movieCast, String producer){
 
         this.id = id;
         this.name = name;
@@ -75,10 +74,10 @@ public class Movie{
     public void setCategory(String category) {
         this.category = category;
     }
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
     public String getDuration() {

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,8 +17,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Session {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime sessionTime;
+    private LocalDateTime sessionStartTime;
+    private LocalDateTime sessionEndTime;
     private BigDecimal basePrice;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "movie_id")
@@ -27,6 +28,7 @@ public class Session {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id")
     private Room room;
-    @OneToMany(mappedBy = "session", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "session_id")
     private List<Seat> seats;
 }

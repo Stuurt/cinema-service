@@ -15,8 +15,6 @@ public class DeadLetterProcessor {
     private final RabbitTemplate rabbitTemplate;
 
     private static final String HEADER_X_RETRIES_COUNT = "x-retries-count";
-    private static final String HEADER_X_ORIGINAL_EXCHANGE = "x-original-exchange";
-    private static final String HEADER_X_ORIGINAL_ROUTING_KEY = "x-original-routing-key";
 
     private final Logger log = LoggerFactory.getLogger(DeadLetterProcessor.class);
 

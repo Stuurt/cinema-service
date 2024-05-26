@@ -24,9 +24,4 @@ public class RabbitMQListener {
         var ticket = handleQueueMessage(ticketMessage, TicketDTO.class);
         ticketService.createTicket(ticket);
     }
-
-    @RabbitListener(queues = "ticketDeadLetter")
-    public void processFailedMessages(Message message) {
-        log.info("Received failed message: {}", message.toString());
-    }
 }

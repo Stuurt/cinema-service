@@ -35,6 +35,7 @@ public class DeadLetterProcessor {
         log.info("Retrying message with correlation id [{}] for the [{}] time", failedMessage.getMessageProperties().getCorrelationId(), retriesCnt);
         failedMessage.getMessageProperties()
                 .getHeaders().put(HEADER_X_RETRIES_COUNT, ++retriesCnt);
+        //
         rabbitTemplate.send(ExchangeEnum.TICKET_EXCHANGE.getQueueName(),
                 failedMessage.getMessageProperties().getHeader("x-last-death-queue"), failedMessage);
     }

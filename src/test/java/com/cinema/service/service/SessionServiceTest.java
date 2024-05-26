@@ -2,17 +2,20 @@ package com.cinema.service.service;
 
 import com.cinema.service.domain.entity.Movie;
 import com.cinema.service.domain.entity.Room;
-import com.cinema.service.domain.entity.Session;
 import com.cinema.service.domain.repository.SessionRepository;
 import com.cinema.service.domain.service.MovieService;
 import com.cinema.service.domain.service.RoomService;
 import com.cinema.service.domain.service.SessionService;
 import com.cinema.service.rest.dto.CreateSessionRequest;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -34,6 +37,9 @@ public class SessionServiceTest {
     @Mock
     private SessionRepository sessionRepository;
 
+    private Integer maxSessionHours = 5;
+    private Integer minimumSessionMinutes = 30;
+
     @Test
     public void givenCreatingNewSession_whenSessionTimeConflicts_thenShouldThrow() {
         var movie = buildMovieExample();
@@ -49,6 +55,29 @@ public class SessionServiceTest {
                 .thenReturn(false);
 
         CreateSessionRequest session = new CreateSessionRequest(LocalDateTime.now().plusHours(5), LocalDateTime.now().plusHours(4), BigDecimal.TWO);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                sessionService.createSession(session, 1L, 1L));
+    }
+
+    @Test
+    public void givenCreatingNewSession_whenSessionMoreThanMax_thenShouldThrow() {
+        var movie = buildMovieExample();
+        var room = buildRoomExample();
+
+        ReflectionTestUtils.setField(sessionService, "maxSessionHours", maxSessionHours);
+        ReflectionTestUtils.setField(sessionService, "minimumSessionMinutes", minimumSessionMinutes);
+
+        when(movieService.findById(anyLong()))
+                .thenReturn(movie);
+
+        when(roomService.findById(anyLong()))
+                .thenReturn(room);
+
+        when(sessionRepository.isRoomEmptyAtThisTime(any(), any(), anyLong()))
+                .thenReturn(true);
+
+        CreateSessionRequest session = new CreateSessionRequest(LocalDateTime.now().plusHours(1), LocalDateTime.now().plusHours(maxSessionHours + 1), BigDecimal.TWO);
 
         assertThrows(IllegalArgumentException.class, () ->
                 sessionService.createSession(session, 1L, 1L));

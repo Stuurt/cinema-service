@@ -61,7 +61,9 @@ public class SessionService {
         LocalDateTime sessionEndTime = session.getSessionEndTime();
         LocalDateTime sessionTimePlusLimit = session.getSessionTime().plusHours(maxSessionHours);
 
-        Boolean exceedsSessionTimeLimit = sessionEndTime.isAfter(sessionTimePlusLimit);
+        Boolean exceedsSessionTimeLimit = sessionEndTime.isAfter(sessionTimePlusLimit)
+                || sessionEndTime.isEqual(sessionTimePlusLimit);
+
         if (exceedsSessionTimeLimit) {
             throw new IllegalArgumentException("session has exceeded the time limit. if this is intentional and not an error, please contact the administrator");
         }

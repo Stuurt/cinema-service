@@ -19,7 +19,7 @@ public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime sessionTime;
+    private LocalDateTime sessionStartTime;
     private LocalDateTime sessionEndTime;
     private BigDecimal basePrice;
     @ManyToOne(fetch = FetchType.EAGER)

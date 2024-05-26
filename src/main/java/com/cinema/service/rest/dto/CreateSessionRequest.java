@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@ValidSessionTime(startTimeField = "sessionTime", endTimeField = "sessionEndTime", message = "Session end time must be after session start time")
+@ValidSessionTime(startTimeField = "sessionStartTime", endTimeField = "sessionEndTime", message = "session end time must be after session start time")
 public class CreateSessionRequest {
     @Future(message = "it's not possible to create a session in the past")
-    @NotNull(message = "sessionTime required")
-    private LocalDateTime sessionTime;
+    @NotNull(message = "sessionStartTime required")
+    private LocalDateTime sessionStartTime;
     @Future(message = "it's not possible to create a session ending in the past")
     @NotNull(message = "sessionEnd time required")
     private LocalDateTime sessionEndTime;

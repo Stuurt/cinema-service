@@ -21,7 +21,7 @@ CREATE TABLE room (
 
 CREATE TABLE session (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    session_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    session_start_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     movie_id BIGINT,
     room_id BIGINT,
     base_price NUMERIC(10, 2),
@@ -39,7 +39,7 @@ CREATE TABLE ticket (
 CREATE TABLE seat (
                       id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                       seat_number SMALLINT NOT NULL,
-                      status BOOLEAN NOT NULL,
+                      available BOOLEAN NOT NULL,
                       type VARCHAR(255) NOT NULL,
                       session_id BIGINT,
                       ticket_id BIGINT,

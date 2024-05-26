@@ -15,7 +15,7 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer seatNumber;
-    private Boolean status;
+    private Boolean available;
     @Enumerated(EnumType.STRING)
     private SeatTypeEnum type;
     @ManyToOne(fetch = FetchType.LAZY)

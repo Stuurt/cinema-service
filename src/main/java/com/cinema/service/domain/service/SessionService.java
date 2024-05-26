@@ -32,13 +32,13 @@ public class SessionService {
         Room room = roomService.findById(roomId);
         List<Seat> seats = createSeatsForSession(room.getTotalSeats());
 
-        checkRoomAvailability(session.getSessionTime(), session.getSessionEndTime(), roomId);
+        checkRoomAvailability(session.getSessionStartTime(), session.getSessionEndTime(), roomId);
         validateSessionDuration(session);
 
         return sessionRepository.save(
                 new Session(
                         null,
-                        session.getSessionTime(),
+                        session.getSessionStartTime(),
                         session.getSessionEndTime(),
                         session.getBasePrice(),
                         movie,
@@ -48,27 +48,27 @@ public class SessionService {
     }
 
     private void checkRoomAvailability(
-            LocalDateTime sessionTime,
+            LocalDateTime sessionStartTime,
             LocalDateTime sessionEndTime,
             Long roomId) {
 
-        Boolean roomIsEmptyAtThisTime = sessionRepository.isRoomEmptyAtThisTime(sessionTime, sessionEndTime, roomId);
+        Boolean roomIsEmptyAtThisTime = sessionRepository.isRoomEmptyAtThisTime(sessionStartTime, sessionEndTime, roomId);
         if (!roomIsEmptyAtThisTime)
             throw new IllegalArgumentException("this room already have a session at this time period");
     }
 
     private void validateSessionDuration(CreateSessionRequest session) {
         LocalDateTime sessionEndTime = session.getSessionEndTime();
-        LocalDateTime sessionTimePlusLimit = session.getSessionTime().plusHours(maxSessionHours);
+        LocalDateTime sessionStartTimePlusLimit = session.getSessionStartTime().plusHours(maxSessionHours);
 
-        Boolean exceedsSessionTimeLimit = sessionEndTime.isAfter(sessionTimePlusLimit)
-                || sessionEndTime.isEqual(sessionTimePlusLimit);
+        Boolean exceedsSessionTimeLimit = sessionEndTime.isAfter(sessionStartTimePlusLimit)
+                || sessionEndTime.isEqual(sessionStartTimePlusLimit);
 
         if (exceedsSessionTimeLimit) {
             throw new IllegalArgumentException("session has exceeded the time limit. if this is intentional and not an error, please contact the administrator");
         }
 
-        LocalDateTime sessionTimePlusMinimum = session.getSessionTime().plusMinutes(minimumSessionMinutes);
+        LocalDateTime sessionTimePlusMinimum = session.getSessionStartTime().plusMinutes(minimumSessionMinutes);
 
         Boolean lessThanMinimumSessionTimeAllowed = sessionEndTime.isBefore(sessionTimePlusMinimum);
         if (lessThanMinimumSessionTimeAllowed) {
@@ -81,7 +81,7 @@ public class SessionService {
         for (int i = 1; i <= totalSeats; i++) {
             Seat seat = new Seat();
             seat.setSeatNumber(i);
-            seat.setStatus(true);
+            seat.setAvailable(true);
             seat.setType(SeatTypeEnum.NORMAL);
             seats.add(seat);
         }

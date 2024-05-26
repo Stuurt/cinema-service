@@ -3,7 +3,6 @@ package com.cinema.service.domain.queue.listener;
 import com.cinema.service.domain.queue.QueueHandler;
 import com.cinema.service.rest.dto.TicketDTO;
 import com.cinema.service.domain.service.TicketService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

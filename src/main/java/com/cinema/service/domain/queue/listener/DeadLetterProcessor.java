@@ -31,13 +31,13 @@ public class DeadLetterProcessor {
                 .getHeaders().get(HEADER_X_RETRIES_COUNT);
         if (retriesCnt == null) retriesCnt = 1;
         if (retriesCnt > 3) {
-            log.info("Discarding message");
+            log.info("discarding message with correlationId: {}", failedMessage.getMessageProperties().getCorrelationId());
             return;
         }
-        log.info("Retrying message for the {} time", retriesCnt);
+        log.info("Retrying message with correlation id [{}] for the [{}] time", failedMessage.getMessageProperties().getCorrelationId(), retriesCnt);
         failedMessage.getMessageProperties()
                 .getHeaders().put(HEADER_X_RETRIES_COUNT, ++retriesCnt);
         rabbitTemplate.send(ExchangeEnum.TICKET_EXCHANGE.getQueueName(),
-                failedMessage.getMessageProperties().getReceivedRoutingKey(), failedMessage);
+                failedMessage.getMessageProperties().getHeader("x-last-death-queue"), failedMessage);
     }
 }

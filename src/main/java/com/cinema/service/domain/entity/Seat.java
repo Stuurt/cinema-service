@@ -18,8 +18,6 @@ public class Seat {
     private Boolean available;
     @Enumerated(EnumType.STRING)
     private SeatTypeEnum type;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Session session;
     @OneToOne
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;

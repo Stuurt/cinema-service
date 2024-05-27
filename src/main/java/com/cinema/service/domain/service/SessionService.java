@@ -7,6 +7,8 @@ import com.cinema.service.domain.entity.Session;
 import com.cinema.service.domain.enums.SeatTypeEnum;
 import com.cinema.service.rest.dto.CreateSessionRequest;
 import com.cinema.service.domain.repository.SessionRepository;
+import com.cinema.service.rest.dto.SeatResponse;
+import com.cinema.service.rest.dto.SessionResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -46,9 +48,24 @@ public class SessionService {
                 ));
     }
 
-    public Session findById(Long sessionId) {
-        return sessionRepository.findById(sessionId)
+    public SessionResponse findById(Long sessionId) {
+        Session sessionEntity = sessionRepository.findById(sessionId)
                 .orElseThrow(() -> new IllegalArgumentException("session with id: [" + sessionId + "] not found"));
+        return new SessionResponse(
+                sessionEntity.getId(),
+                sessionEntity.getSessionStartTime(),
+                sessionEntity.getSessionEndTime(),
+                sessionEntity.getBasePrice(),
+                sessionEntity.getMovie(),
+                sessionEntity.getRoom(),
+                sessionEntity.getSeats().stream().map(seat -> new SeatResponse(
+                        seat.getId(),
+                        seat.getSeatNumber(),
+                        seat.getAvailable(),
+                        seat.getType()
+                        )
+                ).toList()
+        );
     }
 
     private void validateRoomAvailability(

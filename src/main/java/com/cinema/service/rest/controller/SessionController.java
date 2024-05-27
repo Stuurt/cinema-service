@@ -3,6 +3,7 @@ package com.cinema.service.rest.controller;
 import com.cinema.service.domain.entity.Session;
 import com.cinema.service.rest.dto.CreateSessionRequest;
 import com.cinema.service.domain.service.SessionService;
+import com.cinema.service.rest.dto.SessionResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class SessionController {
     }
 
     @GetMapping("/{sessionId}")
-    public ResponseEntity<Session> getSessionById(@PathVariable Long sessionId) {
+    public ResponseEntity<SessionResponse> getSessionById(@PathVariable Long sessionId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(sessionService.findById(sessionId));
     }

@@ -18,9 +18,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Ticket {
     @Id
-    Long id;
-    UUID uuid;
-    BigDecimal pricePaid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String uuid;
+    private BigDecimal paidPrice;
     @Enumerated(EnumType.STRING)
-    DiscountTypeEnum discountType;
+    private DiscountTypeEnum discountType;
 }

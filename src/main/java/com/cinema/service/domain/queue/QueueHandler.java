@@ -9,7 +9,7 @@ import org.springframework.amqp.support.converter.SimpleMessageConverter;
 public class QueueHandler {
     private static final Logger log = LoggerFactory.getLogger(QueueHandler.class);
 
-    public static <T> T handleQueue(Message message, Class<T> clazz) {
+    public static <T> T handleQueueMessage(Message message, Class<T> clazz) {
         ObjectMapper objectMapper = new ObjectMapper();
         SimpleMessageConverter converter = new SimpleMessageConverter();
         
@@ -20,7 +20,7 @@ public class QueueHandler {
 
             return objectMapper.readValue(messageBody, clazz);
         } catch (Exception e) {
-            log.error("Error processing message: " + message, e);
+            log.error("Error processing message: [" + message.toString() + "]", e);
             return null;
         }
     }

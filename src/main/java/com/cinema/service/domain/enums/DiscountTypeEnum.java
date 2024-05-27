@@ -7,5 +7,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum DiscountTypeEnum {
-        HALF_PRICE
+        HALF_PRICE,
+        NONE
 }

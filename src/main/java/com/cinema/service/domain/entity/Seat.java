@@ -20,7 +20,7 @@ public class Seat {
     private SeatTypeEnum type;
     @ManyToOne(fetch = FetchType.LAZY)
     private Session session;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 }

@@ -4,6 +4,14 @@ spring:
   rabbitmq:
     username: admin
     password: admin
+    listener:
+      direct:
+        retry:
+          enabled: true
+          initial-interval: 1000ms
+          max-interval: 10000ms
+      simple:
+        default-requeue-rejected: false
   liquibase:
     enabled: true
     change-log: classpath:/config/liquibase/changelog.xml

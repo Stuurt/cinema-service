@@ -4,6 +4,7 @@ import com.cinema.service.domain.entity.Session;
 import com.cinema.service.rest.dto.SessionCreateRequest;
 import com.cinema.service.domain.service.SessionService;
 import com.cinema.service.rest.dto.SessionListResponse;
+import com.cinema.service.rest.dto.SessionResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -36,5 +37,11 @@ public class SessionController {
     ) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(sessionService.findAllSessionsPaginated(page, size));
+    }
+
+    @GetMapping("/{sessionId}")
+    public ResponseEntity<SessionResponse> getSessionById(@PathVariable Long sessionId) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(sessionService.findById(sessionId));
     }
 }

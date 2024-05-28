@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ValidSessionTime(startTimeField = "sessionStartTime", endTimeField = "sessionEndTime", message = "session end time must be after session start time")
-public class CreateSessionRequest {
+public class SessionCreateRequest {
     @Future(message = "it's not possible to create a session in the past")
     @NotNull(message = "sessionStartTime required")
     private LocalDateTime sessionStartTime;

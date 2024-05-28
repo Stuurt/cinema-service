@@ -5,10 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum QueueEnum {
-
-    TICKET_QUEUE("ticketQueue"),
-    TICKET_DEAD_LETTER("ticketDeadLetter"),;
-
+public enum ExchangeEnum {
+    TICKET_EXCHANGE("ticketExchange");
     private final String queueName;
 }

@@ -55,7 +55,6 @@ public class SessionService {
         return sessionRepository.findAllSessionsPaginated(PageRequest.of(page, size));
     }
 
-    private void checkRoomAvailability(
     public SessionResponse findById(Long sessionId) {
         Session sessionEntity = sessionRepository.findById(sessionId)
                 .orElseThrow(() -> new IllegalArgumentException("session with id: [" + sessionId + "] not found"));

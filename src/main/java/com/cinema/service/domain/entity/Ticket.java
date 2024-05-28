@@ -16,9 +16,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class Ticket {
     @Id
-    Long id;
-    String uuid;
-    BigDecimal pricePaid;
+    private Long id;
+    private String uuid;
+    private BigDecimal pricePaid;
     @Enumerated(EnumType.STRING)
-    DiscountTypeEnum discountType;
+    private DiscountTypeEnum discountType;
 }

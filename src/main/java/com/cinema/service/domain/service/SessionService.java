@@ -5,12 +5,15 @@ import com.cinema.service.domain.entity.Room;
 import com.cinema.service.domain.entity.Seat;
 import com.cinema.service.domain.entity.Session;
 import com.cinema.service.domain.enums.SeatTypeEnum;
-import com.cinema.service.rest.dto.CreateSessionRequest;
+import com.cinema.service.rest.dto.SessionCreateRequest;
 import com.cinema.service.domain.repository.SessionRepository;
 import com.cinema.service.rest.dto.SeatResponse;
 import com.cinema.service.rest.dto.SessionResponse;
+import com.cinema.service.rest.dto.SessionListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,7 +31,7 @@ public class SessionService {
     @Value("${cinema.min-session-minutes}")
     private Integer minimumSessionMinutes;
 
-    public Session createSession(CreateSessionRequest session, Long movieId, Long roomId) {
+    public Session createSession(SessionCreateRequest session, Long movieId, Long roomId) {
         Movie movie = movieService.findById(movieId);
         Room room = roomService.findById(roomId);
         List<Seat> seats = createSeatsForSession(room.getTotalSeats());
@@ -48,6 +51,11 @@ public class SessionService {
                 ));
     }
 
+    public Page<SessionListResponse> findAllSessionsPaginated(int page, int size) {
+        return sessionRepository.findAllSessionsPaginated(PageRequest.of(page, size));
+    }
+
+    private void checkRoomAvailability(
     public SessionResponse findById(Long sessionId) {
         Session sessionEntity = sessionRepository.findById(sessionId)
                 .orElseThrow(() -> new IllegalArgumentException("session with id: [" + sessionId + "] not found"));
@@ -78,7 +86,7 @@ public class SessionService {
             throw new IllegalArgumentException("this room already have a session at this time period");
     }
 
-    private void validateSessionDuration(CreateSessionRequest session) {
+    private void validateSessionDuration(SessionCreateRequest session) {
         LocalDateTime sessionEndTime = session.getSessionEndTime();
         LocalDateTime sessionStartTimePlusLimit = session.getSessionStartTime().plusHours(maxSessionHours);
 

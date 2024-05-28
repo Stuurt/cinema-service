@@ -6,7 +6,7 @@ import com.cinema.service.domain.repository.SessionRepository;
 import com.cinema.service.domain.service.MovieService;
 import com.cinema.service.domain.service.RoomService;
 import com.cinema.service.domain.service.SessionService;
-import com.cinema.service.rest.dto.CreateSessionRequest;
+import com.cinema.service.rest.dto.SessionCreateRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -53,7 +53,7 @@ public class SessionServiceTest {
         when(sessionRepository.isRoomEmptyAtThisTime(any(), any(), anyLong()))
                 .thenReturn(false);
 
-        CreateSessionRequest session = new CreateSessionRequest(LocalDateTime.now().plusHours(5), LocalDateTime.now().plusHours(4), BigDecimal.TWO);
+        SessionCreateRequest session = new SessionCreateRequest(LocalDateTime.now().plusHours(5), LocalDateTime.now().plusHours(4), BigDecimal.TWO);
 
         assertThrows(IllegalArgumentException.class, () ->
                 sessionService.createSession(session, 1L, 1L));
@@ -76,7 +76,7 @@ public class SessionServiceTest {
         when(sessionRepository.isRoomEmptyAtThisTime(any(), any(), anyLong()))
                 .thenReturn(true);
 
-        CreateSessionRequest session = new CreateSessionRequest(LocalDateTime.now().plusHours(1), LocalDateTime.now().plusHours(maxSessionHours + 1), BigDecimal.TWO);
+        SessionCreateRequest session = new SessionCreateRequest(LocalDateTime.now().plusHours(1), LocalDateTime.now().plusHours(maxSessionHours + 1), BigDecimal.TWO);
 
         assertThrows(IllegalArgumentException.class, () ->
                 sessionService.createSession(session, 1L, 1L));
@@ -99,7 +99,7 @@ public class SessionServiceTest {
         when(sessionRepository.isRoomEmptyAtThisTime(any(), any(), anyLong()))
                 .thenReturn(true);
 
-        CreateSessionRequest session = new CreateSessionRequest(LocalDateTime.now().plusHours(1), LocalDateTime.now().plusHours(maxSessionHours-1), BigDecimal.TWO);
+        SessionCreateRequest session = new SessionCreateRequest(LocalDateTime.now().plusHours(1), LocalDateTime.now().plusHours(maxSessionHours-1), BigDecimal.TWO);
 
         assertDoesNotThrow(() ->
                 sessionService.createSession(session, 1L, 1L));

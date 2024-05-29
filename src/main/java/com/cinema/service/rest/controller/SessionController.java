@@ -29,6 +29,7 @@ public class SessionController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(sessionService.createSession(sessionCreateRequest, movieId, roomId));
     }
+    
 
     @GetMapping
     public ResponseEntity<Page<SessionListResponse>> getAllSessionsPaginated(

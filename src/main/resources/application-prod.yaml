@@ -1,1 +1,8 @@
 # not implemented yet
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cinema_db
+    username: root
+    password: root
+  rabbitmq:
+    host: localhost

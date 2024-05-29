@@ -50,6 +50,7 @@ public class SessionService {
                         seats
                 ));
     }
+    
 
     public Page<SessionListResponse> findAllSessionsPaginated(int page, int size) {
         return sessionRepository.findAllSessionsPaginated(PageRequest.of(page, size));

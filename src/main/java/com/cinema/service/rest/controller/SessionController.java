@@ -2,10 +2,10 @@ package com.cinema.service.rest.controller;
 
 import com.cinema.service.domain.entity.Session;
 import com.cinema.service.domain.service.SeatService;
-import com.cinema.service.rest.dto.SessionCreateRequest;
+import com.cinema.service.rest.dto.request.SessionCreateRequest;
 import com.cinema.service.domain.service.SessionService;
-import com.cinema.service.rest.dto.SessionListResponse;
-import com.cinema.service.rest.dto.SessionResponse;
+import com.cinema.service.rest.dto.response.SessionListResponse;
+import com.cinema.service.rest.dto.response.SessionResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

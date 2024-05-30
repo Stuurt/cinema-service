@@ -1,4 +1,4 @@
-package com.cinema.service.rest.dto;
+package com.cinema.service.rest.dto.response;
 
 import com.cinema.service.domain.entity.Movie;
 import com.cinema.service.domain.entity.Room;

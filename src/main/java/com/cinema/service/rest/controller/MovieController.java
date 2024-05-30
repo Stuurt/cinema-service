@@ -1,13 +1,12 @@
 package com.cinema.service.rest.controller;
 
-import com.cinema.service.rest.dto.MovieListResponse;
+import com.cinema.service.rest.dto.request.MovieCreateRequest;
+import com.cinema.service.rest.dto.response.MovieListResponse;
 import com.cinema.service.domain.entity.Movie;
 import com.cinema.service.domain.service.MovieService;
-import com.cinema.service.rest.dto.MovieResponse;
+import com.cinema.service.rest.dto.response.MovieResponse;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
@@ -26,6 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Validated
 public class MovieController {
     private final MovieService movieService;
+
+    @PostMapping
+    public ResponseEntity<MovieResponse> createMovie(@RequestBody @Validated MovieCreateRequest movie){
+        return ResponseEntity.ok().body(movieService.create(movie));
+    }
 
     @GetMapping
     public ResponseEntity<Page<MovieListResponse>> getAllMoviePaginated(

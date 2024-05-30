@@ -1,4 +1,4 @@
-package com.cinema.service.rest.dto;
+package com.cinema.service.rest.dto.request;
 
 import com.cinema.service.rest.validation.annotation.ValidSessionTime;
 import jakarta.validation.constraints.Future;

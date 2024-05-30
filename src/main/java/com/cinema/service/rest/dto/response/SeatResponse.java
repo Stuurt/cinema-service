@@ -1,4 +1,4 @@
-package com.cinema.service.rest.dto;
+package com.cinema.service.rest.dto.response;
 
 import com.cinema.service.domain.enums.SeatTypeEnum;
 import lombok.AllArgsConstructor;

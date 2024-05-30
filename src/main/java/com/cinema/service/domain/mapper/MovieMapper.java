@@ -1,13 +1,12 @@
 package com.cinema.service.domain.mapper;
 
 import com.cinema.service.domain.entity.Movie;
-import com.cinema.service.rest.dto.MovieListResponse;
-import com.cinema.service.rest.dto.MovieResponse;
+import com.cinema.service.rest.dto.request.MovieCreateRequest;
+import com.cinema.service.rest.dto.response.MovieListResponse;
+import com.cinema.service.rest.dto.response.MovieResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-
-import java.util.List;
 
 @Mapper
 public interface MovieMapper {
@@ -44,4 +43,6 @@ public interface MovieMapper {
     @Mapping(target = "movieCast", source = "movieCast")
     @Mapping(target = "producer", source = "producer")
     Movie toEntity(MovieResponse dto);
+
+    Movie fromCreateRequest(MovieCreateRequest dto);
 }

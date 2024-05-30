@@ -1,7 +1,7 @@
 package com.cinema.service.domain.mapper;
 
 import com.cinema.service.domain.entity.Seat;
-import com.cinema.service.rest.dto.SeatResponse;
+import com.cinema.service.rest.dto.response.SeatResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

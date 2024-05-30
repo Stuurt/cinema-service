@@ -1,29 +1,32 @@
 package com.cinema.service.domain.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Movie{
+public class Movie {
     
     //Atributos
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String synopsis;
-    private String ageGroup;
+    private Integer ageGroup;
     private String category;
     private LocalDate releaseDate;
-    private String duration;
+    private LocalTime duration;
     private String director;
     private String movieCast;
     private String producer;
 
     // Método Construtor
 
-    public Movie(Long id, String name, String synopsis, String ageGroup, String category, LocalDate releaseDate, String duration, String director, String movieCast, String producer){
+    public Movie(Long id, String name, String synopsis, Integer ageGroup, String category, LocalDate releaseDate, LocalTime duration, String director, String movieCast, String producer){
 
         this.id = id;
         this.name = name;
@@ -62,10 +65,10 @@ public class Movie{
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
-    public String getAgeGroup() {
+    public Integer getAgeGroup() {
         return ageGroup;
     }
-    public void setAgeGroup(String ageGroup) {
+    public void setAgeGroup(Integer ageGroup) {
         this.ageGroup = ageGroup;
     }
     public String getCategory() {
@@ -80,10 +83,10 @@ public class Movie{
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
-    public String getDuration() {
+    public LocalTime getDuration() {
         return duration;
     }
-    public void setDuration(String duration) {
+    public void setDuration(LocalTime duration) {
         this.duration = duration;
     }
     public String getDirector() {

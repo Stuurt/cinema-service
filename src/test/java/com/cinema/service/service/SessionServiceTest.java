@@ -6,7 +6,7 @@ import com.cinema.service.domain.repository.SessionRepository;
 import com.cinema.service.domain.service.MovieService;
 import com.cinema.service.domain.service.RoomService;
 import com.cinema.service.domain.service.SessionService;
-import com.cinema.service.rest.dto.SessionCreateRequest;
+import com.cinema.service.rest.dto.request.SessionCreateRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

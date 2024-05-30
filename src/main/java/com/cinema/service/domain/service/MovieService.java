@@ -1,6 +1,7 @@
 package com.cinema.service.domain.service;
 
 import com.cinema.service.domain.entity.Movie;
+import com.cinema.service.domain.mapper.MovieMapper;
 import com.cinema.service.domain.repository.MovieRepository;
 import com.cinema.service.rest.dto.MovieListResponse;
 import com.cinema.service.rest.dto.MovieResponse;
@@ -15,24 +16,13 @@ public class MovieService {
     public final MovieRepository movieRepository;
 
     public Page<MovieListResponse> findAll(int page, int size) {
-        return movieRepository.findAll(PageRequest.of(page, size));
+        Page<Movie> movies = movieRepository.findAll(PageRequest.of(page, size));
+        return movies.map(movie -> MovieMapper.INSTANCE.toDtoList(movie));
     }
-    
 
     public MovieResponse findById(Long id) {
         Movie movieEntity = movieRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("Movie with id: " + id + " not found"));
-
-            return new MovieResponse(
-                movieEntity.getId(),
-                movieEntity.getName(),
-                movieEntity.getSynopsis(),
-                movieEntity.getAgeGroup(),
-                movieEntity.getCategory(),
-                movieEntity.getReleaseDate(),
-                movieEntity.getDuration(),
-                movieEntity.getDirector(),
-                movieEntity.getMovieCast(),
-                movieEntity.getProducer());
+            return MovieMapper.INSTANCE.toDto(movieEntity);
     }
 }

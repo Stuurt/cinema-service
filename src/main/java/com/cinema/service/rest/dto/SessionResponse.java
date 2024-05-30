@@ -20,7 +20,7 @@ public class SessionResponse {
     private LocalDateTime sessionStartTime;
     private LocalDateTime sessionEndTime;
     private BigDecimal basePrice;
-    private Movie movie;
+    private MovieResponse movie;
     private Room room;
     private List<SeatResponse> seats;
 }

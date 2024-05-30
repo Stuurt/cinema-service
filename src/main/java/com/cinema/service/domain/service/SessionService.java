@@ -5,6 +5,8 @@ import com.cinema.service.domain.entity.Room;
 import com.cinema.service.domain.entity.Seat;
 import com.cinema.service.domain.entity.Session;
 import com.cinema.service.domain.enums.SeatTypeEnum;
+import com.cinema.service.domain.mapper.MovieMapper;
+import com.cinema.service.domain.repository.MovieRepository;
 import com.cinema.service.rest.dto.SessionCreateRequest;
 import com.cinema.service.domain.repository.SessionRepository;
 import com.cinema.service.rest.dto.SeatResponse;
@@ -25,6 +27,7 @@ public class SessionService {
     private final SessionRepository sessionRepository;
     private final RoomService roomService;
     private final MovieService movieService;
+    private final MovieRepository movieRepository;
 
     @Value("${cinema.max-session-hours}")
     private Integer maxSessionHours;
@@ -32,7 +35,9 @@ public class SessionService {
     private Integer minimumSessionMinutes;
 
     public Session createSession(SessionCreateRequest session, Long movieId, Long roomId) {
-        Movie movie = movieService.findById(movieId);
+        Movie movieEntity = movieRepository.findById(movieId).orElseThrow(() ->
+                new IllegalArgumentException("Movie with id: " + movieId + " not found"));
+
         Room room = roomService.findById(roomId);
         List<Seat> seats = createSeatsForSession(room.getTotalSeats());
 
@@ -45,7 +50,7 @@ public class SessionService {
                         session.getSessionStartTime(),
                         session.getSessionEndTime(),
                         session.getBasePrice(),
-                        movie,
+                        movieEntity,
                         room,
                         seats
                 ));
@@ -64,7 +69,7 @@ public class SessionService {
                 sessionEntity.getSessionStartTime(),
                 sessionEntity.getSessionEndTime(),
                 sessionEntity.getBasePrice(),
-                sessionEntity.getMovie(),
+                MovieMapper.INSTANCE.toDto(sessionEntity.getMovie()),
                 sessionEntity.getRoom(),
                 sessionEntity.getSeats().stream().map(seat -> new SeatResponse(
                         seat.getId(),

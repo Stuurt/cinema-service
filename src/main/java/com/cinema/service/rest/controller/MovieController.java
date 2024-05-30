@@ -26,22 +26,15 @@ public class MovieController {
     private final MovieService movieService;
 
     @GetMapping
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
-    @Operation(summary = "Get movies", description = "bar", parameters = {@Parameter(name = "lelelel")})
-    public String getMethodName(@RequestParam String param) {
-        return new String();
+    public ResponseEntity<Page<MovieListResponse>> getAllMoviePaginated(
+        @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+        @RequestParam(value = "size", required = false, defaultValue = "10") int size
+    ){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(movieService.findAll(page, size));
     }
 
-@GetMapping
-public ResponseEntity<Page<MovieListResponse>> getAllMoviePaginated(
-    @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-    @RequestParam(value = "size", required = false, defaultValue = "10") int size
-){
-    return ResponseEntity.status(HttpStatus.OK)
-            .body(movieService.findAllMoviePaginated(page, size));
-}
-
-@GetMapping("/{movieId}")
+    @GetMapping("/{movieId}")
     public ResponseEntity<MovieResponse> getMovieById(@PathVariable Long movieId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(movieService.findById(movieId));

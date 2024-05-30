@@ -18,7 +18,7 @@ public class Ticket {
     @Id
     private Long id;
     private String uuid;
-    private BigDecimal pricePaid;
+    private BigDecimal paidPrice;
     @Enumerated(EnumType.STRING)
     private DiscountTypeEnum discountType;
 }

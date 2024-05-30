@@ -18,7 +18,7 @@ public class Seat {
     private Boolean available;
     @Enumerated(EnumType.STRING)
     private SeatTypeEnum type;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 }

@@ -18,10 +18,6 @@ public class TicketService {
     public void createTicket(TicketDTO ticketDTO) {
         Seat seatEntity = seatService.findById(ticketDTO.getSeatId());
 
-        if (!seatEntity.getAvailable())
-            throw new IllegalArgumentException("seat is not available");
-
-        seatEntity.setAvailable(false);
         Ticket ticketEntity = new Ticket(
                 null, ticketDTO.getUuid(),
                 ticketDTO.getPaidPrice(),

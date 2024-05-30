@@ -5,6 +5,7 @@ import com.cinema.service.domain.entity.Movie;
 import com.cinema.service.domain.service.MovieService;
 import com.cinema.service.rest.dto.MovieResponse;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/movies")
+@CrossOrigin(origins = "${services.bff}")
 @Validated
 public class MovieController {
     private final MovieService movieService;

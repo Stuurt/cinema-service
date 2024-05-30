@@ -56,10 +56,6 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-bootRun {
-	args = ['--spring.profiles.active=prod']
-}
-
 bootJar {
 	launchScript {
 		properties 'spring.profiles.active': 'prod'

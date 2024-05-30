@@ -22,4 +22,15 @@ public class SeatService {
         log.info("updating seat [{}]", seat);
         seatRepository.save(seat);
     }
+
+    public void updateSeatToUnavailable(Long seatId) {
+        var seat = findById(seatId);
+
+        if (!seat.getAvailable())
+            throw new IllegalArgumentException("seat with id " + seatId + " is already occupied");
+
+        seat.setAvailable(false);
+        log.info("updating seat to Unavailable [{}]", seat);
+        seatRepository.save(seat);
+    }
 }

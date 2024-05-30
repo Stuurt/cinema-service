@@ -1,6 +1,7 @@
 package com.cinema.service.rest.controller;
 
 import com.cinema.service.domain.entity.Session;
+import com.cinema.service.domain.service.SeatService;
 import com.cinema.service.rest.dto.SessionCreateRequest;
 import com.cinema.service.domain.service.SessionService;
 import com.cinema.service.rest.dto.SessionListResponse;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sessions")
 @RequiredArgsConstructor
 @Validated
+@CrossOrigin(origins = "${services.bff}")
 public class SessionController {
     private final SessionService sessionService;
+    private final SeatService seatService;
 
     @PostMapping("/movies/{movieId}/rooms/{roomId}")
     public ResponseEntity<Session> createSession(
@@ -43,5 +46,11 @@ public class SessionController {
     public ResponseEntity<SessionResponse> getSessionById(@PathVariable Long sessionId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(sessionService.findById(sessionId));
+    }
+
+    @PatchMapping("/seats/{seatId}/mark-unavailable")
+    public ResponseEntity<Void> updateSeatToUnavailable(@PathVariable Long seatId) {
+        seatService.updateSeatToUnavailable(seatId);
+        return ResponseEntity.ok().build();
     }
 }

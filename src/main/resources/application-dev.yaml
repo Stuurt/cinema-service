@@ -5,3 +5,6 @@ spring:
     password: root
   rabbitmq:
     host: localhost
+
+services:
+  bff: http://localhost:8080

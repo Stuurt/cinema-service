@@ -22,4 +22,5 @@ public class MovieResponse {
     private String director;
     private String movieCast;
     private String producer;
+    private byte[] movieImage;
 }

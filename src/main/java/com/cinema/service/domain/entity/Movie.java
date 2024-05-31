@@ -23,10 +23,11 @@ public class Movie {
     private String director;
     private String movieCast;
     private String producer;
+    private String imagePath;
 
     // Método Construtor
 
-    public Movie(Long id, String name, String synopsis, Integer ageGroup, String category, LocalDate releaseDate, LocalTime duration, String director, String movieCast, String producer){
+    public Movie(Long id, String name, String synopsis, Integer ageGroup, String category, LocalDate releaseDate, LocalTime duration, String director, String movieCast, String producer, String imagePath){
 
         this.id = id;
         this.name = name;
@@ -38,6 +39,7 @@ public class Movie {
         this.director = director;
         this.movieCast = movieCast;
         this.producer = producer;
+        this.imagePath = imagePath;
     }
 
     // O JPA precisa de um método construtor vazio
@@ -108,4 +110,11 @@ public class Movie {
         this.producer = producer;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 }

@@ -15,4 +15,5 @@ public class MovieListResponse {
     private String ageGroup;
     private String category;
     private String duration;
+    private String imagePath;
 }

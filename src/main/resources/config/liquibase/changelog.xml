@@ -7,4 +7,5 @@
 
     <include file="2024-05-21-initial-setup.sql" relativeToChangelogFile="true"/>
     <include file="2024-05-25-add-session-end-time-field-at-session-table.sql" relativeToChangelogFile="true"/>
+    <include file="2024-05-30-image-path.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

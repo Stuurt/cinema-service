@@ -22,4 +22,4 @@ server:
 cinema:
   max-session-hours: 5
   min-session-minutes: 10
-  movie-image-upload-directory: "src/main/resources/static/images/movies"
+  movie-image-upload-directory: "src/main/resources/static/images/movies/"

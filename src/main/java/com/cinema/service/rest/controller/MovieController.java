@@ -1,10 +1,12 @@
 package com.cinema.service.rest.controller;
 
+import com.cinema.service.domain.service.ImageService;
 import com.cinema.service.rest.dto.request.MovieCreateRequest;
 import com.cinema.service.rest.dto.response.MovieListResponse;
-import com.cinema.service.domain.entity.Movie;
 import com.cinema.service.domain.service.MovieService;
 import com.cinema.service.rest.dto.response.MovieResponse;
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +30,14 @@ import java.io.IOException;
 @Validated
 public class MovieController {
     private final MovieService movieService;
+
+    @GetMapping(
+            value = "/get-image/{movieId}",
+            produces = MediaType.IMAGE_JPEG_VALUE
+    )
+    public @ResponseBody byte[] getMovieImage(@PathVariable Long movieId) throws IOException {
+        return movieService.getMovieImage(movieId);
+    }
 
     @PostMapping
     public ResponseEntity<MovieResponse> createMovie(
@@ -43,6 +54,7 @@ public class MovieController {
         movieService.saveMovieImage(movieImage, movieId);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping
     public ResponseEntity<Page<MovieListResponse>> getAllMoviePaginated(
         @RequestParam(value = "page", required = false, defaultValue = "0") int page,

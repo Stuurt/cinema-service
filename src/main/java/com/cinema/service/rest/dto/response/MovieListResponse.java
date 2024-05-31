@@ -15,5 +15,5 @@ public class MovieListResponse {
     private String ageGroup;
     private String category;
     private String duration;
-    private byte[] movieImage;
+    private String imagePath;
 }

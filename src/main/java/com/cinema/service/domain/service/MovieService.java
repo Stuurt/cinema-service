@@ -7,18 +7,17 @@ import com.cinema.service.rest.dto.request.MovieCreateRequest;
 import com.cinema.service.rest.dto.response.MovieListResponse;
 import com.cinema.service.rest.dto.response.MovieResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Service
 @RequiredArgsConstructor
@@ -38,36 +37,22 @@ public class MovieService {
                 .orElseThrow();
         String adsImagesString = "";
         for (MultipartFile imageFile : movieImage) {
-            adsImagesString += imageService.saveImageToStorage(movieImagesPath, imageFile) + ",";
+            adsImagesString += imageService.saveImageToStorage(movieImagesPath, imageFile);
         }
         movieEntity.setImagePath(adsImagesString);
         movieRepository.save(movieEntity);
     }
 
-    public Page<MovieListResponse> findAll(int page, int size) throws IOException {
+    public Page<MovieListResponse> findAll(int page, int size) {
         Page<Movie> movies = movieRepository.findAll(PageRequest.of(page, size));
+        return movies.map(movie -> MovieMapper.INSTANCE.toDtoList(movie));
+    }
 
-        List<Movie> movieList = movies.getContent();
+    public byte[] getMovieImage(Long movieId) throws IOException {
+        String path = findById(movieId).getImagePath();
+        Path imagePath = Paths.get(movieImagesPath, path);
 
-        Map<Long, String> moviePathMap = movieList.stream()
-                .collect(Collectors.toMap(Movie::getId, Movie::getImagePath));
-
-        List<MovieListResponse> movieResponseList = movies.stream()
-                .map(movie -> MovieMapper.INSTANCE.toDtoList(movie))
-                .collect(Collectors.toList());
-
-        for (MovieListResponse movieResponse : movieResponseList) {
-            String imagePath = moviePathMap.get(movieResponse.getId());
-            if (imagePath != null) {
-                try {
-                    movieResponse.setMovieImage(imageService.getImage(movieImagesPath, imagePath));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-
-        return new PageImpl<>(movieResponseList, PageRequest.of(page, size), movies.getTotalElements());
+        return Files.readAllBytes(imagePath);
     }
 
     public MovieResponse findById(Long id) {

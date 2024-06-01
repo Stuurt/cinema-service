@@ -8,8 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface SessionRepository extends JpaRepository<Session, Long> {
+    @Query("SELECT s FROM Session s JOIN FETCH s.seats st WHERE s.id = :sessionId ORDER BY st.seatNumber")
+    Optional<Session> findByIdOrderBySeatNumber(@Param("sessionId") Long sessionId);
+
     @Query("SELECT CASE WHEN COUNT(s) > 0 THEN FALSE ELSE TRUE END " +
             "FROM Session s " +
             "WHERE s.room.id = :roomId " +

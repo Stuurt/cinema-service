@@ -66,7 +66,7 @@ public class SessionService {
     }
 
     public SessionResponse findById(Long sessionId) {
-        Session sessionEntity = sessionRepository.findById(sessionId)
+        Session sessionEntity = sessionRepository.findByIdOrderBySeatNumber(sessionId)
                 .orElseThrow(() -> new IllegalArgumentException("session with id: [" + sessionId + "] not found"));
         return new SessionResponse(
                 sessionEntity.getId(),

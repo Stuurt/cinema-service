@@ -24,4 +24,10 @@ public interface SessionRepository extends JpaRepository<Session, Long> {
             "JOIN s.movie m " +
             "JOIN s.room r")
     Page<SessionListResponse> findAllSessionsPaginated(Pageable pageable);
+
+    @Query("SELECT new com.cinema.service.rest.dto.response.SessionListResponse(s.id, s.sessionStartTime, s.sessionEndTime, s.basePrice, s.room) " +
+            "FROM Session s " +
+            "JOIN s.movie m " +
+            "JOIN s.room r WHERE s.movie.id = :movieId")
+    Page<SessionListResponse> findAllSessionsPaginatedByMovieId(@Param("movieId") Long movieId, Pageable pageable);
 }

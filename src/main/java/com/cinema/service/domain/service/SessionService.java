@@ -61,6 +61,10 @@ public class SessionService {
         return sessionRepository.findAllSessionsPaginated(PageRequest.of(page, size));
     }
 
+    public Page<SessionListResponse> findAllSessionsPaginatedByMovieId(Long movieId, int page, int size) {
+        return sessionRepository.findAllSessionsPaginatedByMovieId(movieId, PageRequest.of(page, size));
+    }
+
     public SessionResponse findById(Long sessionId) {
         Session sessionEntity = sessionRepository.findById(sessionId)
                 .orElseThrow(() -> new IllegalArgumentException("session with id: [" + sessionId + "] not found"));

@@ -43,6 +43,16 @@ public class SessionController {
                 .body(sessionService.findAllSessionsPaginated(page, size));
     }
 
+    @GetMapping("/movies/{movieId}")
+    public ResponseEntity<Page<SessionListResponse>> getAllSessionsPaginatedByMovieId(
+            @PathVariable Long movieId,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size
+    ) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(sessionService.findAllSessionsPaginatedByMovieId(movieId, page, size));
+    }
+
     @GetMapping("/{sessionId}")
     public ResponseEntity<SessionResponse> getSessionById(@PathVariable Long sessionId) {
         return ResponseEntity.status(HttpStatus.OK)

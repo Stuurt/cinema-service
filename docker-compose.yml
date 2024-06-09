@@ -4,7 +4,7 @@ services:
   cinema_db:
     image: postgres:16.3
     volumes:
-      - ./cinema-service.sql:/docker-entrypoint-initdb.d/cinema.sql
+      - ./cinema-service.sql:/docker-entrypoint-db.d/cinema.sql
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_USER: root

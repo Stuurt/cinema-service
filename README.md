@@ -1,8 +1,9 @@
 # Requirements
 - Docker
 - Docker Compose (comes with docker desktop for Windows users)
-- Java 21 (For **Windows users** if your IDE doesn't manage JDK versions, and you have many JDK versions, maybe you will need to change manually by environment variables JAVA_HOME or Path), like the example below:
-![img.png](./readme-images/environment-variables-example.png)
+- Java 21 (For **Windows users** if your IDE doesn't manage JDK versions, maybe you will need to change manually by environment variables JAVA_HOME or Path), like the example below:
+![img.png](./readme-images/environment-variables-example.png), more information: https://www.happycoders.eu/java/how-to-switch-multiple-java-versions-windows/
+- Gradle (maybe your IDE has already installed it for you)
 
 # How to run?
 First, you will need to start the docker images by running **docker-compose up** at the root directory. This command will start two containers, PostgreSQL and RabbitMQ.
@@ -19,7 +20,3 @@ If you encounter some persisting errors trying to setup properly, probably the r
 **To run the application using your IDE instead of the terminal, you will likely need to learn how to manage JDK versions within your IDE rather than changing environment variables**
 IntelliJ example:
 ![img.png](./readme-images/changing-jdk-version-by-intellij.png)
-
-### Deploy example
-- ./gradlew bootJar
-- java -jar build/libs/service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod

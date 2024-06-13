@@ -20,3 +20,6 @@ If you encounter some persisting errors trying to setup properly, probably the r
 **To run the application using your IDE instead of the terminal, you will likely need to learn how to manage JDK versions within your IDE rather than changing environment variables**
 IntelliJ example:
 ![img.png](./readme-images/changing-jdk-version-by-intellij.png)
+
+# Class diagram
+![img.png](./diagrama/diagrama_classe_cineaart.jpeg)
